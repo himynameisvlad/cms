@@ -11,20 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [
+    'uses' => 'IndexController@getView',
+    'as'   => 'index'
+]);
 
 Route::get('/cmslogin', function () {
     return view('login');
 });
 
 Route::get('/dashboard', [
-    'uses' => 'AdminController@getDashboard',
-    'as'   => 'dashboard'
+    'uses' => 'DashboardController@getDashboard',
+    'as'   => 'dashboard',
+    'middleware' => 'guest'
 ]);
 
 Route::post('/signin', [
     'uses' => 'AdminController@postSignIn',
     'as'   => 'signin'
+]);
+
+Route::post('/signup', [
+    'uses' => 'AdminController@postSignUp',
+    'as'   => 'signup'
 ]);

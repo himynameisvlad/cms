@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }
